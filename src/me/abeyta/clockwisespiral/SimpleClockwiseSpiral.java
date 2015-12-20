@@ -18,8 +18,6 @@ public class SimpleClockwiseSpiral {
 			throw new IllegalArgumentException("Input matrix cannot be null");
 		}
 		this.matrix = matrix;
-		this.currentRow = 0;
-		this.currentItem = 0;
 		this.maxRowLength = matrix[0].length - 1;
 		this.maxColumnLength = matrix.length - 1;
 	}
