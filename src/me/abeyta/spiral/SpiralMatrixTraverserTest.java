@@ -1,10 +1,10 @@
-package me.abeyta.clockwisespiral;
+package me.abeyta.spiral;
 
 import static org.junit.Assert.assertArrayEquals;
 
 import org.junit.Test;
 
-import me.abeyta.clockwisespiral.SpiralMatrixTraverser.SpiralDirection;
+import me.abeyta.spiral.SpiralMatrixTraverser.SpiralDirection;
 
 public class SpiralMatrixTraverserTest {
 

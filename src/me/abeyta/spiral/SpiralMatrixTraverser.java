@@ -1,9 +1,9 @@
-package me.abeyta.clockwisespiral;
+package me.abeyta.spiral;
 
-import static me.abeyta.clockwisespiral.SpiralMatrixTraverser.Direction.DOWN;
-import static me.abeyta.clockwisespiral.SpiralMatrixTraverser.Direction.LEFT;
-import static me.abeyta.clockwisespiral.SpiralMatrixTraverser.Direction.RIGHT;
-import static me.abeyta.clockwisespiral.SpiralMatrixTraverser.Direction.UP;
+import static me.abeyta.spiral.SpiralMatrixTraverser.Direction.DOWN;
+import static me.abeyta.spiral.SpiralMatrixTraverser.Direction.LEFT;
+import static me.abeyta.spiral.SpiralMatrixTraverser.Direction.RIGHT;
+import static me.abeyta.spiral.SpiralMatrixTraverser.Direction.UP;
 
 import java.util.ArrayList;
 import java.util.List;
