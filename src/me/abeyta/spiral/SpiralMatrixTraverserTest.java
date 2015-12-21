@@ -16,7 +16,7 @@ public class SpiralMatrixTraverserTest {
 		arrayToTraverse[1] = new int[]{ 4,  5,  6};
 		arrayToTraverse[2] = new int[]{ 7,  8,  9};
 		
-		Integer[] output = new SpiralMatrixTraverser(arrayToTraverse, SpiralDirection.CLOCKWISE).traverse();
+		Integer[] output = new SpiralMatrixTraverser(arrayToTraverse).traverse();
 		
 		assertArrayEquals(new Integer[] {1, 2, 3, 6, 9, 8, 7, 4, 5}, output);
 	}
@@ -30,7 +30,7 @@ public class SpiralMatrixTraverserTest {
 		arrayToTraverse[2] = new int[]{ 9, 10, 11, 12};
 		arrayToTraverse[3] = new int[]{13, 14, 15, 16};
 		
-		Integer[] output = new SpiralMatrixTraverser(arrayToTraverse, SpiralDirection.CLOCKWISE).traverse();
+		Integer[] output = new SpiralMatrixTraverser(arrayToTraverse).traverse();
 		
 		assertArrayEquals(new Integer[] {1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10}, output);
 	}
@@ -43,7 +43,7 @@ public class SpiralMatrixTraverserTest {
 		arrayToTraverse[1] = new int[]{ 6,  7,  8,  9, 10};
 		arrayToTraverse[2] = new int[]{11, 12, 13, 14, 15};
 		
-		Integer[] output = new SpiralMatrixTraverser(arrayToTraverse, SpiralDirection.CLOCKWISE).traverse();
+		Integer[] output = new SpiralMatrixTraverser(arrayToTraverse).traverse();
 		
 		assertArrayEquals(new Integer[] {1, 2, 3, 4, 5, 10, 15, 14, 13, 12, 11, 6, 7, 8, 9}, output);
 	}
@@ -58,7 +58,7 @@ public class SpiralMatrixTraverserTest {
 		arrayToTraverse[3] = new int[]{10, 11, 12};
 		arrayToTraverse[4] = new int[]{13, 14, 15};
 		
-		Integer[] output = new SpiralMatrixTraverser(arrayToTraverse, SpiralDirection.CLOCKWISE).traverse();
+		Integer[] output = new SpiralMatrixTraverser(arrayToTraverse).traverse();
 		
 		assertArrayEquals(new Integer[] {1, 2, 3, 6, 9, 12, 15, 14, 13, 10, 7, 4, 5, 8, 11}, output);
 	}

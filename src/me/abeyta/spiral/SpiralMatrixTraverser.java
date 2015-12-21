@@ -23,6 +23,10 @@ public class SpiralMatrixTraverser {
 	Direction currentDirection;
 	SpiralDirection spiralDirection;
 
+	public SpiralMatrixTraverser(int[][] matrix) {
+		this(matrix, SpiralDirection.CLOCKWISE);
+	}
+	
 	public SpiralMatrixTraverser(int[][] matrix, SpiralDirection spiralDirection) {
 		if (matrix == null) {
 			throw new IllegalArgumentException("Input matrix cannot be null");
