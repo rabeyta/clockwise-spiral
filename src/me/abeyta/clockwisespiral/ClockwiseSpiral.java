@@ -1,5 +1,10 @@
 package me.abeyta.clockwisespiral;
 
+import static me.abeyta.clockwisespiral.ClockwiseSpiral.Direction.DOWN;
+import static me.abeyta.clockwisespiral.ClockwiseSpiral.Direction.LEFT;
+import static me.abeyta.clockwisespiral.ClockwiseSpiral.Direction.RIGHT;
+import static me.abeyta.clockwisespiral.ClockwiseSpiral.Direction.UP;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,36 +21,44 @@ public class ClockwiseSpiral {
 	int upLimit;
 
 	Direction currentDirection;
+	SpiralDirection spiralDirection;
 
 	public ClockwiseSpiral(int[][] matrix, SpiralDirection spiralDirection) {
 		if (matrix == null) {
 			throw new IllegalArgumentException("Input matrix cannot be null");
 		}
-		if(SpiralDirection.COUNTERCLOCKWISE == spiralDirection) {
+		if(spiralDirection == null) {
+			this.spiralDirection = SpiralDirection.CLOCKWISE;
+		}
 		
+		this.spiralDirection = spiralDirection;
+		this.matrix = matrix;
+		this.rightLimit = matrix[0].length - 1;
+		this.totalLength = matrix.length * matrix[0].length;
+		this.downLimit = matrix.length - 1;
+		this.leftLimit = 0;
+
+		if (SpiralDirection.COUNTERCLOCKWISE == spiralDirection) {
+			this.upLimit = -1;
+			this.currentDirection = DOWN;
 		} else {
-			this.matrix = matrix;
-			this.rightLimit = matrix[0].length - 1;
-			this.totalLength = matrix.length * matrix[0].length;
-			this.downLimit = matrix.length - 1;
 			this.upLimit = 0;
-			this.leftLimit = 0;
-			this.currentDirection = Direction.RIGHT;
+			this.currentDirection = RIGHT;
 		}
 	}
 
 	public Integer[] traverse() {
 		List<Integer> output = new ArrayList<>();
-		
-		//get it started with the first number
+
+		// get it started with the first number
 		output.add(matrix[currentRow][currentItem]);
-		
-		//iterate over the rest
+
+		// iterate over the rest
 		for (int x = 1; x < totalLength; x++) {
 			output.add(getNextItem());
 		}
 
-		//spit out the result
+		// spit out the result
 		return output.toArray(new Integer[totalLength]);
 	}
 
@@ -53,61 +66,119 @@ public class ClockwiseSpiral {
 		calculateNextDirection();
 
 		switch (currentDirection) {
-			case RIGHT: {
-				return matrix[currentRow][++currentItem];
-			}
-			case DOWN: {
-				return matrix[++currentRow][currentItem];
-			}
-			case LEFT: {
-				return matrix[currentRow][--currentItem];
-			}
-			case UP: {
-				return matrix[--currentRow][currentItem];
-			}
+		case RIGHT: {
+			return matrix[currentRow][++currentItem];
 		}
-		
+		case DOWN: {
+			return matrix[++currentRow][currentItem];
+		}
+		case LEFT: {
+			return matrix[currentRow][--currentItem];
+		}
+		case UP: {
+			return matrix[--currentRow][currentItem];
+		}
+		}
+
 		throw new RuntimeException("error in calculation...shouldn't have hit this!");
 	}
 
 	private void calculateNextDirection() {
 		switch (currentDirection) {
-			case RIGHT: {
-				if (currentItem == rightLimit) {
-					upLimit++;
-					this.currentDirection = Direction.DOWN;
-				}
-				break;
+		case RIGHT: {
+			if (currentItem == rightLimit) {
+				upLimit++;
+				setNextDirection();
 			}
-			case DOWN: {
-				if (currentRow == downLimit) {
-					downLimit--;
-					this.currentDirection = Direction.LEFT;
-				}
-				break;
-			}
-			case LEFT: {
-				if (currentItem <= leftLimit) {
-					rightLimit--;
-					this.currentDirection = Direction.UP;
-				}
-				break;
-			}
-			case UP: {
-				if (currentRow == upLimit) {
-					leftLimit++;
-					this.currentDirection = Direction.RIGHT;
-				}
-				break;
-			}
+			break;
 		}
+		case DOWN: {
+			if (currentRow == downLimit) {
+				downLimit--;
+				setNextDirection();
+			}
+			break;
+		}
+		case LEFT: {
+			if (currentItem == leftLimit) {
+				rightLimit--;
+				setNextDirection();
+			}
+			break;
+		}
+		case UP: {
+			if (currentRow == upLimit) {
+				leftLimit++;
+				setNextDirection();
+			}
+			break;
+		}
+		}
+	}
+
+	private void setNextDirection() {
+		this.currentDirection = spiralDirection.getNextDirection(currentDirection);
 	}
 
 	enum Direction {
 		RIGHT, LEFT, UP, DOWN;
 	}
-	
+
 	enum SpiralDirection {
 		CLOCKWISE, COUNTERCLOCKWISE;
+
+		public Direction getNextDirection(Direction currentDirection) {
+			switch (this) {
+				case CLOCKWISE: {
+					return getNextClockwiseDirection(currentDirection);
+				}
+				case COUNTERCLOCKWISE: {
+					return getNextCounterClockwiseDirection(currentDirection);
+				}
+				default: {
+					throw new RuntimeException("whoops. never should have hit this. we forgot to implement a new case. please contact your normal support channels.");
+				}
+			}
+		}
+
+		private Direction getNextCounterClockwiseDirection(Direction currentDirection) {
+			switch (currentDirection) {
+				case DOWN: {
+					return RIGHT;
+				}
+				case RIGHT: {
+					return UP;
+				}
+				case UP: {
+					return LEFT;
+				}
+				case LEFT: {
+					return DOWN;
+				}
+				default: {
+					throw new RuntimeException("whoops. never should have hit this. we forgot to implement a new case. please contact your normal support channels.");
+				}
+			}
+		}
+
+		private Direction getNextClockwiseDirection(Direction currentDirection) {
+			switch (currentDirection) {
+				case RIGHT: {
+					return DOWN;
+				}
+				case DOWN: {
+					return LEFT;
+				}
+				case LEFT: {
+					return UP;
+				}
+				case UP: {
+					return RIGHT;
+				}
+				default: {
+					throw new RuntimeException("whoops. never should have hit this. we forgot to implement a new case. please contact your normal support channels.");
+				}
+			}
+		}
 	}
 }
