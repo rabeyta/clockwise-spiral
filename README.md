@@ -15,4 +15,6 @@ Assume you have a two dimensional array. Each element will be an integer startin
 
 Write a program that walks the matrix in a clockwise spiral, starting from `[0][0]` and spiraling inward. The output of the program should be the value stored at each cell of the matrix, in the order of traversal. For the example matrix above, the correct output of the problem would be: 
 
+``` 
 1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+```
