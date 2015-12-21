@@ -82,7 +82,7 @@ public class ClockwiseSpiral {
 				break;
 			}
 			case LEFT: {
-				if (currentItem <= leftLimit) {
+				if (currentItem == leftLimit) {
 					rightLimit--;
 					this.currentDirection = Direction.UP;
 				}
