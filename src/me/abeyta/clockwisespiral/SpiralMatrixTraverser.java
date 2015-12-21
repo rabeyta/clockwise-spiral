@@ -1,14 +1,14 @@
 package me.abeyta.clockwisespiral;
 
-import static me.abeyta.clockwisespiral.ClockwiseSpiral.Direction.DOWN;
-import static me.abeyta.clockwisespiral.ClockwiseSpiral.Direction.LEFT;
-import static me.abeyta.clockwisespiral.ClockwiseSpiral.Direction.RIGHT;
-import static me.abeyta.clockwisespiral.ClockwiseSpiral.Direction.UP;
+import static me.abeyta.clockwisespiral.SpiralMatrixTraverser.Direction.DOWN;
+import static me.abeyta.clockwisespiral.SpiralMatrixTraverser.Direction.LEFT;
+import static me.abeyta.clockwisespiral.SpiralMatrixTraverser.Direction.RIGHT;
+import static me.abeyta.clockwisespiral.SpiralMatrixTraverser.Direction.UP;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClockwiseSpiral {
+public class SpiralMatrixTraverser {
 
 	int[][] matrix;
 	int currentRow;
@@ -23,7 +23,7 @@ public class ClockwiseSpiral {
 	Direction currentDirection;
 	SpiralDirection spiralDirection;
 
-	public ClockwiseSpiral(int[][] matrix, SpiralDirection spiralDirection) {
+	public SpiralMatrixTraverser(int[][] matrix, SpiralDirection spiralDirection) {
 		if (matrix == null) {
 			throw new IllegalArgumentException("Input matrix cannot be null");
 		}
