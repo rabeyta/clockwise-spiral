@@ -15,18 +15,23 @@ public class ClockwiseSpiral {
 	int downLimit;
 	int upLimit;
 
-	Direction currentDirection = Direction.RIGHT;
+	Direction currentDirection;
 
-	public ClockwiseSpiral(int[][] matrix) {
+	public ClockwiseSpiral(int[][] matrix, SpiralDirection spiralDirection) {
 		if (matrix == null) {
 			throw new IllegalArgumentException("Input matrix cannot be null");
 		}
-		this.matrix = matrix;
-		this.rightLimit = matrix[0].length - 1;
-		this.totalLength = matrix.length * matrix[0].length;
-		this.downLimit = matrix.length - 1;
-		this.upLimit = 0;
-		this.leftLimit = 0;
+		if(SpiralDirection.COUNTERCLOCKWISE == spiralDirection) {
+		
+		} else {
+			this.matrix = matrix;
+			this.rightLimit = matrix[0].length - 1;
+			this.totalLength = matrix.length * matrix[0].length;
+			this.downLimit = matrix.length - 1;
+			this.upLimit = 0;
+			this.leftLimit = 0;
+			this.currentDirection = Direction.RIGHT;
+		}
 	}
 
 	public Integer[] traverse() {
@@ -100,5 +105,9 @@ public class ClockwiseSpiral {
 
 	enum Direction {
 		RIGHT, LEFT, UP, DOWN;
+	}
+	
+	enum SpiralDirection {
+		CLOCKWISE, COUNTERCLOCKWISE;
 	}
 }
