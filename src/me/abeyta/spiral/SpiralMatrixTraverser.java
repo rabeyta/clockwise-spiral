@@ -3,6 +3,8 @@ package me.abeyta.spiral;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.abeyta.spiral.model.Direction;
+
 public abstract class SpiralMatrixTraverser {
 
 	int[][] matrix;
@@ -100,7 +102,4 @@ public abstract class SpiralMatrixTraverser {
 
 	abstract void setNextDirection();
 
-	enum Direction {
-		RIGHT, LEFT, UP, DOWN;
-	}
 }

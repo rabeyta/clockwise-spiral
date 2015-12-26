@@ -1,9 +1,9 @@
 package me.abeyta.spiral;
 
-import static me.abeyta.spiral.SpiralMatrixTraverser.Direction.DOWN;
-import static me.abeyta.spiral.SpiralMatrixTraverser.Direction.LEFT;
-import static me.abeyta.spiral.SpiralMatrixTraverser.Direction.RIGHT;
-import static me.abeyta.spiral.SpiralMatrixTraverser.Direction.UP;
+import static me.abeyta.spiral.model.Direction.DOWN;
+import static me.abeyta.spiral.model.Direction.LEFT;
+import static me.abeyta.spiral.model.Direction.RIGHT;
+import static me.abeyta.spiral.model.Direction.UP;
 
 public class CounterClockwiseSpiralMatrixTraverser extends SpiralMatrixTraverser {
 
