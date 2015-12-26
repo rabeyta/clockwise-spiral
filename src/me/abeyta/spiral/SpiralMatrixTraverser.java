@@ -48,18 +48,18 @@ public abstract class SpiralMatrixTraverser {
 		calculateNextDirection();
 
 		switch (currentDirection) {
-		case RIGHT: {
-			return matrix[currentRow][++currentItem];
-		}
-		case DOWN: {
-			return matrix[++currentRow][currentItem];
-		}
-		case LEFT: {
-			return matrix[currentRow][--currentItem];
-		}
-		case UP: {
-			return matrix[--currentRow][currentItem];
-		}
+			case RIGHT: {
+				return matrix[currentRow][++currentItem];
+			}
+			case DOWN: {
+				return matrix[++currentRow][currentItem];
+			}
+			case LEFT: {
+				return matrix[currentRow][--currentItem];
+			}
+			case UP: {
+				return matrix[--currentRow][currentItem];
+			}
 		}
 
 		throw new RuntimeException("error in calculation...shouldn't have hit this!");
