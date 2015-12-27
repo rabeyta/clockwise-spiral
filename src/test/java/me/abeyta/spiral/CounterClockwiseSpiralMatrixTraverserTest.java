@@ -14,7 +14,7 @@ public class CounterClockwiseSpiralMatrixTraverserTest {
 		arrayToTraverse[1] = new int[]{ 4,  5,  6};
 		arrayToTraverse[2] = new int[]{ 7,  8,  9};
 		
-		Integer[] output = new CounterClockwiseSpiralMatrixTraverser(arrayToTraverse).traverse();
+		Integer[] output = new CounterClockwiseSpiralMatrixTraverser().traverse(arrayToTraverse);
 		
 		assertArrayEquals(new Integer[] {1, 4, 7, 8, 9, 6, 3, 2, 5}, output);
 	}
@@ -28,7 +28,7 @@ public class CounterClockwiseSpiralMatrixTraverserTest {
 		arrayToTraverse[2] = new int[]{ 9, 10, 11, 12};
 		arrayToTraverse[3] = new int[]{13, 14, 15, 16};
 		
-		Integer[] output = new CounterClockwiseSpiralMatrixTraverser(arrayToTraverse).traverse();
+		Integer[] output = new CounterClockwiseSpiralMatrixTraverser().traverse(arrayToTraverse);
 		
 		assertArrayEquals(new Integer[] {1, 5, 9, 13, 14, 15, 16, 12, 8, 4, 3, 2, 6, 10, 11, 7}, output);
 	}
@@ -41,7 +41,7 @@ public class CounterClockwiseSpiralMatrixTraverserTest {
 		arrayToTraverse[1] = new int[]{ 6,  7,  8,  9, 10};
 		arrayToTraverse[2] = new int[]{11, 12, 13, 14, 15};
 		
-		Integer[] output = new CounterClockwiseSpiralMatrixTraverser(arrayToTraverse).traverse();
+		Integer[] output = new CounterClockwiseSpiralMatrixTraverser().traverse(arrayToTraverse);
 		
 		assertArrayEquals(new Integer[] {1, 6, 11, 12, 13, 14, 15, 10, 5, 4, 3, 2, 7, 8, 9}, output);
 	}
@@ -56,7 +56,7 @@ public class CounterClockwiseSpiralMatrixTraverserTest {
 		arrayToTraverse[3] = new int[]{10, 11, 12};
 		arrayToTraverse[4] = new int[]{13, 14, 15};
 		
-		Integer[] output = new CounterClockwiseSpiralMatrixTraverser(arrayToTraverse).traverse();
+		Integer[] output = new CounterClockwiseSpiralMatrixTraverser().traverse(arrayToTraverse);
 		
 		assertArrayEquals(new Integer[] {1, 4, 7, 10, 13, 14, 15, 12, 9, 6, 3, 2, 5, 8, 11}, output);
 	}
