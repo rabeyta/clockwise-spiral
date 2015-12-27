@@ -9,12 +9,6 @@ import me.abeyta.spiral.model.Direction;
 
 public class ClockwiseSpiralMatrixTraverser extends SpiralMatrixTraverser {
 
-	public ClockwiseSpiralMatrixTraverser(int[][] matrix) {
-		super(matrix);
-		this.upLimit = 0;
-		this.currentDirection = RIGHT;
-	}
-
 	@Override
 	Direction getNextDirection(Direction currentDirection) {
 		switch (currentDirection) {
@@ -34,6 +28,16 @@ public class ClockwiseSpiralMatrixTraverser extends SpiralMatrixTraverser {
 				throw new RuntimeException("whoops. never should have hit this. we forgot to implement a new case. please contact your normal support channels.");
 			}
 		}
+	}
+
+	@Override
+	int getUpLimit() {
+		return 0;
+	}
+
+	@Override
+	Direction getStartingDirection() {
+		return RIGHT;
 	}
 
 }

@@ -4,34 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.abeyta.spiral.model.Direction;
+import me.abeyta.spiral.model.MatrixLimits;
 
 public abstract class SpiralMatrixTraverser {
 
-	int[][] matrix;
-	int currentRow;
-	int currentItem;
-	int totalLength;
+	public Integer[] traverse(int[][] matrix) {
+		validateMatrix(matrix);
+		
+		int currentRow = 0;
+		int currentItem = 0;
+		int totalLength;
 
-	int rightLimit;
-	int leftLimit;
-	int downLimit;
-	int upLimit;
-
-	Direction currentDirection;
-
-	public SpiralMatrixTraverser(int[][] matrix) {
-		if (matrix == null) {
-			throw new IllegalArgumentException("Input matrix cannot be null");
-		}
-		//TODO: add in additional validations around multi-dimensional array not having any nulls
-		this.matrix = matrix;
-		this.rightLimit = matrix[0].length - 1;
-		this.totalLength = matrix.length * matrix[0].length;
-		this.downLimit = matrix.length - 1;
-		this.leftLimit = 0;
-	}
-	
-	public Integer[] traverse() {
+		totalLength = matrix.length * matrix[0].length;
+		
+		MatrixLimits limits = new MatrixLimits(matrix[0].length - 1, 0, matrix.length - 1, getUpLimit());
+		Direction currentDirection = getStartingDirection();
+		
 		List<Integer> output = new ArrayList<>();
 
 		// get it started with the first number
@@ -39,65 +27,58 @@ public abstract class SpiralMatrixTraverser {
 
 		// iterate over the rest
 		for (int x = 1; x < totalLength; x++) {
-			output.add(getNextItem());
+			currentDirection = calculateNextDirection(currentDirection, limits, currentItem, currentRow);
+			currentRow += currentDirection.rowMovement;
+			currentItem += currentDirection.columnMovement;
+			output.add(matrix[currentRow][currentItem]);
 		}
 
 		// spit out the result
 		return output.toArray(new Integer[totalLength]);
 	}
 
-	private int getNextItem() {
-		calculateNextDirection();
-
-		switch (currentDirection) {
-			case RIGHT: {
-				return matrix[currentRow][++currentItem];
-			}
-			case DOWN: {
-				return matrix[++currentRow][currentItem];
-			}
-			case LEFT: {
-				return matrix[currentRow][--currentItem];
-			}
-			case UP: {
-				return matrix[--currentRow][currentItem];
-			}
+	abstract int getUpLimit();
+	abstract Direction getStartingDirection();
+	
+	private void validateMatrix(int[][] matrix) {
+		if (matrix == null) {
+			throw new IllegalArgumentException("Input matrix cannot be null");
 		}
-
-		throw new RuntimeException("error in calculation...shouldn't have hit this!");
+		// TODO add more validations and tests
 	}
 
-	private void calculateNextDirection() {
+	private Direction calculateNextDirection(Direction currentDirection, MatrixLimits limits, int currentItem, int currentRow) {
 		switch (currentDirection) {
 			case RIGHT: {
-				if (currentItem == rightLimit) {
-					upLimit++;
-					this.currentDirection = getNextDirection(currentDirection);
+				if (currentItem == limits.getRightLimit()) {
+					limits.increaseUpLimit();
+					return getNextDirection(currentDirection);
 				}
 				break;
 			}
 			case DOWN: {
-				if (currentRow == downLimit) {
-					downLimit--;
-					this.currentDirection = getNextDirection(currentDirection);
+				if (currentRow == limits.getDownLimit()) {
+					limits.decreaseDownLimit();
+					return getNextDirection(currentDirection);
 				}
 				break;
 			}
 			case LEFT: {
-				if (currentItem == leftLimit) {
-					rightLimit--;
-					this.currentDirection = getNextDirection(currentDirection);
+				if (currentItem == limits.getLeftLimit()) {
+					limits.decreaseRightLimit();
+					return getNextDirection(currentDirection);
 				}
 				break;
 			}
 			case UP: {
-				if (currentRow == upLimit) {
-					leftLimit++;
-					this.currentDirection = getNextDirection(currentDirection);
+				if (currentRow == limits.getUpLimit()) {
+					limits.increaseLeftLimit();
+					return getNextDirection(currentDirection);
 				}
 				break;
 			}
 		}
+		return currentDirection;
 	}
 
 	abstract Direction getNextDirection(Direction currentDirection);
