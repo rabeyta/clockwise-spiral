@@ -72,34 +72,34 @@ public abstract class SpiralMatrixTraverser {
 			case RIGHT: {
 				if (currentItem == rightLimit) {
 					upLimit++;
-					setNextDirection();
+					this.currentDirection = getNextDirection(currentDirection);
 				}
 				break;
 			}
 			case DOWN: {
 				if (currentRow == downLimit) {
 					downLimit--;
-					setNextDirection();
+					this.currentDirection = getNextDirection(currentDirection);
 				}
 				break;
 			}
 			case LEFT: {
 				if (currentItem == leftLimit) {
 					rightLimit--;
-					setNextDirection();
+					this.currentDirection = getNextDirection(currentDirection);
 				}
 				break;
 			}
 			case UP: {
 				if (currentRow == upLimit) {
 					leftLimit++;
-					setNextDirection();
+					this.currentDirection = getNextDirection(currentDirection);
 				}
 				break;
 			}
 		}
 	}
 
-	abstract void setNextDirection();
+	abstract Direction getNextDirection(Direction currentDirection);
 
 }

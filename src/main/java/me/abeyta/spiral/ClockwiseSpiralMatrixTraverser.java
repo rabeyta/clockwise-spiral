@@ -5,6 +5,8 @@ import static me.abeyta.spiral.model.Direction.LEFT;
 import static me.abeyta.spiral.model.Direction.RIGHT;
 import static me.abeyta.spiral.model.Direction.UP;
 
+import me.abeyta.spiral.model.Direction;
+
 public class ClockwiseSpiralMatrixTraverser extends SpiralMatrixTraverser {
 
 	public ClockwiseSpiralMatrixTraverser(int[][] matrix) {
@@ -14,23 +16,19 @@ public class ClockwiseSpiralMatrixTraverser extends SpiralMatrixTraverser {
 	}
 
 	@Override
-	void setNextDirection() {
+	Direction getNextDirection(Direction currentDirection) {
 		switch (currentDirection) {
 			case RIGHT: {
-				this.currentDirection = DOWN;
-				break;
+				return DOWN;
 			}
 			case DOWN: {
-				this.currentDirection = LEFT;
-				break;
+				return LEFT;
 			}
 			case LEFT: {
-				this.currentDirection = UP;
-				break;
+				return UP;
 			}
 			case UP: {
-				this.currentDirection = RIGHT;
-				break;
+				return RIGHT;
 			}
 			default: {
 				throw new RuntimeException("whoops. never should have hit this. we forgot to implement a new case. please contact your normal support channels.");
