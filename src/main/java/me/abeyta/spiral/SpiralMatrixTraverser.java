@@ -11,20 +11,18 @@ public abstract class SpiralMatrixTraverser {
 	public Integer[] traverse(int[][] matrix) {
 		validateMatrix(matrix);
 		
-		int currentRow = 0;
-		int currentItem = 0;
-		int totalLength;
-
-		totalLength = matrix.length * matrix[0].length;
-		
 		MatrixLimits limits = new MatrixLimits(matrix[0].length - 1, 0, matrix.length - 1, getUpLimit());
 		Direction currentDirection = getStartingDirection();
+
+		int currentRow = 0;
+		int currentItem = 0;
+		int totalLength = matrix.length * matrix[0].length;
 		
 		List<Integer> output = new ArrayList<>();
 
 		// get it started with the first number
 		output.add(matrix[currentRow][currentItem]);
-
+		
 		// iterate over the rest
 		for (int x = 1; x < totalLength; x++) {
 			currentDirection = calculateNextDirection(currentDirection, limits, currentItem, currentRow);
@@ -37,9 +35,6 @@ public abstract class SpiralMatrixTraverser {
 		return output.toArray(new Integer[totalLength]);
 	}
 
-	abstract int getUpLimit();
-	abstract Direction getStartingDirection();
-	
 	private void validateMatrix(int[][] matrix) {
 		if (matrix == null) {
 			throw new IllegalArgumentException("Input matrix cannot be null");
@@ -82,5 +77,7 @@ public abstract class SpiralMatrixTraverser {
 	}
 
 	abstract Direction getNextDirection(Direction currentDirection);
+	abstract int getUpLimit();
+	abstract Direction getStartingDirection();
 
 }
